@@ -1,0 +1,39 @@
+.main__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+}
+.google__auth__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(86, 86, 234);
+  color: white;
+  padding: 1em;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.google__auth__btn:hover {
+  background-color: rgb(20, 20, 131);
+}
+.google__auth__btn__logo {
+  background-color: white;
+  padding: 0.3em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+.google__auth__btn__logo img {
+  width: 20px;
+  height: 20px;
+}
+.google__auth__btn__text {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 2em;
+}
