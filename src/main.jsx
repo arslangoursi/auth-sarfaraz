@@ -1,22 +1,50 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import Other from "./Other.jsx";
+import "./styles.css";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  Navigate,
+  Outlet,
+  RouterProvider,
+  createBrowserRouter,
+  useNavigate,
+} from "react-router-dom";
+
+import Dashboard from "./screens/Dashboard";
+import Login from "./screens/Login";
+import { createRoot } from "react-dom/client";
+import { useAtom } from "jotai";
+import { useEffect } from "react";
+import { userAtom } from "./global/userAtom";
+
+function Root() {
+  const navigate = useNavigate();
+  const [user] = useAtom(userAtom);
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    } else {
+      navigate("/");
+    }
+  }, [user]);
+  return <Outlet />;
+}
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-  },
-  {
-    path: "/Other",
-    element: <Other />,
+    element: <Root />,
+    children: [
+      {
+        path: "/",
+        element: <Login />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+    ],
   },
 ]);
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+
+createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
 );
