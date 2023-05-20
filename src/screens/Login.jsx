@@ -1,10 +1,29 @@
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+
 import Google from "../assets/google.png";
-import { Link } from "react-router-dom";
+import { app } from "../global/firebase";
 import { useAtom } from "jotai";
 import { userAtom } from "../global/userAtom";
 
+const provider = new GoogleAuthProvider();
+const auth = getAuth(app);
+
 export default function Login() {
-  const [user, setUser] = useAtom(userAtom);
+  const navigate = useNavigate();
+  const [, setUser] = useAtom(userAtom);
+  const signInWithGoogle = async () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        navigate("/dashboard", { replace: true });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+  };
   return (
     <>
       <div className="main__container">
@@ -13,16 +32,15 @@ export default function Login() {
           <div className="main__container__form__subheading">
             Login to your account below or signup for an amazing experience
           </div>
-          <Link
-            to="/dashboard"
-            onClick={() => setUser({ name: "John Doe", email: "" })}
+          <button
+            onClick={signInWithGoogle}
             className="main__container__form__button"
           >
             <img src={Google} className="main__container__form__button__icon" />
             <div className="main__container__form__button__label">
               Continue with google
             </div>
-          </Link>
+          </button>
         </div>
       </div>
     </>
