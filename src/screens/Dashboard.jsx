@@ -25,7 +25,9 @@ export default function Dashboard() {
           marginBottom: "1em",
         }}
       />
-      <div style={{ fontSize: "2rem", fontWeight: "bold" }}>
+      <div
+        style={{ fontSize: "1.5rem", fontWeight: "bold", textAlign: "center" }}
+      >
         Welcome {user?.displayName}
       </div>
       <Link
