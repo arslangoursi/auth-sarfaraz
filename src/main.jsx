@@ -1,11 +1,9 @@
 import "./styles.css";
 
 import {
-  Navigate,
   Outlet,
   RouterProvider,
   createBrowserRouter,
-  useLocation,
   useNavigate,
 } from "react-router-dom";
 
@@ -17,9 +15,9 @@ import { useEffect } from "react";
 import { userAtom } from "./global/userAtom";
 
 function Root() {
-  const location = useLocation();
   const navigate = useNavigate();
   const [user] = useAtom(userAtom);
+
   useEffect(() => {
     if (user) {
       navigate("/dashboard", {
@@ -30,7 +28,7 @@ function Root() {
         replace: true,
       });
     }
-  }, [location]);
+  }, []);
 
   return <Outlet />;
 }
