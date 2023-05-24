@@ -812,6 +812,11 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
+"@react-oauth/google@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@react-oauth/google/-/google-0.11.0.tgz#9d3814e54fbfc0452525397238ad2372a9aaaef9"
+  integrity sha512-yeypwdQCcFIAo43OqVOLBfUXuxmxt3xiybfP9h3smtBW4UeFXFVQDsq+d+GlbZFo0TpONPR2+KCk/KT1/pQnvQ==
+
 "@remix-run/router@1.6.2":
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.6.2.tgz#bbe75f8c59e0b7077584920ce2cc76f8f354934d"

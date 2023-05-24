@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 
 import Dashboard from "./screens/Dashboard";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import Login from "./screens/Login";
 import { createRoot } from "react-dom/client";
 import { useAtom } from "jotai";
@@ -51,5 +52,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <GoogleOAuthProvider clientId="531536906225-57bss0u2ho8toi258m8rq4etvi1g0v4r.apps.googleusercontent.com">
+    <RouterProvider router={router} />
+  </GoogleOAuthProvider>
 );

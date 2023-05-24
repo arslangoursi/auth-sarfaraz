@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 import { useAtom } from "jotai";
 import { userAtom } from "../global/userAtom";
 
 export default function Dashboard() {
-  const [user, setUser] = useAtom(userAtom);
+  const user = useLocation().state?.user;
+  console.log(user);
   return (
     <div
       style={{
@@ -15,7 +17,7 @@ export default function Dashboard() {
         width: "100%",
       }}
     >
-      <img
+      {/* <img
         src={user?.photoURL}
         alt={user?.displayName}
         style={{
@@ -46,7 +48,7 @@ export default function Dashboard() {
         }}
       >
         Logout
-      </Link>
+      </Link> */}
     </div>
   );
 }

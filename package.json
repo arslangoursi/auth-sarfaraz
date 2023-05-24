@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.11.0",
     "firebase": "^9.22.0",
     "jotai": "^2.1.0",
     "react": "^18.2.0",
