@@ -1,8 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 
-import { useAtom } from "jotai";
-import { userAtom } from "../global/userAtom";
-
 export default function Dashboard() {
   const user = useLocation().state?.user;
   console.log(user);
