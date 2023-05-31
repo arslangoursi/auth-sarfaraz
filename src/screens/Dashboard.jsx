@@ -1,8 +1,39 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const user = useLocation().state?.user;
-  console.log(user);
+
+  function decodeJwtResponse(jwtResponse) {
+    const tokenParts = jwtResponse.split(".");
+    const header = atob(tokenParts[0]);
+    const payload = atob(tokenParts[1]);
+
+    return {
+      header: JSON.parse(header),
+      payload: JSON.parse(payload),
+    };
+  }
+
+  function handleCredentialResponse(response) {
+    const responsePayload = decodeJwtResponse(response.credential);
+
+    const id = responsePayload.payload.sub;
+    const fullName = responsePayload.payload.name;
+    const givenName = responsePayload.payload.given_name;
+    const familyName = responsePayload.payload.family_name;
+    const imageUrl = responsePayload.payload.picture;
+    const email = responsePayload.payload.email;
+
+    return {
+      id,
+      fullName,
+      givenName,
+      familyName,
+      imageUrl,
+      email,
+    };
+  }
+
   return (
     <div
       style={{
@@ -14,9 +45,9 @@ export default function Dashboard() {
         width: "100%",
       }}
     >
-      {/* <img
-        src={user?.photoURL}
-        alt={user?.displayName}
+      <img
+        src={handleCredentialResponse(user)?.imageUrl}
+        alt={handleCredentialResponse(user)?.fullName}
         style={{
           height: "100px",
           width: "100px",
@@ -27,12 +58,20 @@ export default function Dashboard() {
       <div
         style={{ fontSize: "1.5rem", fontWeight: "bold", textAlign: "center" }}
       >
-        Welcome {user?.displayName}
+        Welcome {handleCredentialResponse(user).fullName}
       </div>
       <Link
         to="/"
         onClick={() => {
-          setUser(null);
+          console.log(document.cookie);
+          document.cookie.split(";").forEach((c) => {
+            document.cookie = c
+              .replace(/^ +/, "")
+              .replace(
+                /=.*/,
+                "=;expires=" + new Date().toUTCString() + ";path=/"
+              );
+          });
         }}
         style={{
           marginTop: "1em",
@@ -45,7 +84,7 @@ export default function Dashboard() {
         }}
       >
         Logout
-      </Link> */}
+      </Link>
     </div>
   );
 }

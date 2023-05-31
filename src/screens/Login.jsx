@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
-
   const responseMessage = (response) => {
-    console.log(response);
     navigate("/dashboard", {
       replace: true,
       state: { user: response },
@@ -27,7 +25,9 @@ export default function Login() {
             onSuccess={responseMessage}
             onError={errorMessage}
             shape="pill"
-            ux_mode={window.innerWidth > 768 ? "popup" : "redirect"}
+            auto_select={false}
+            redirect_uri="/dashboard"
+            ux_mode="popup"
           />
         </div>
       </div>
