@@ -4,14 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node api.js && vite",
+    "build": "node api.js && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.2",
     "firebase": "^9.23.0",
-    "jotai": "^2.15.1",
+    "jotai": "^2.15.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.2"
